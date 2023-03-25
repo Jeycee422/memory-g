@@ -12,7 +12,7 @@ export default function Home() {
   const [showTiles, setShowTiles] = useState(false)
   
   useEffect(() => {
-    shuffled()
+    shuffle()
     setGameOver(false)
     setDisabled(false)
     setShowTiles(false)
@@ -55,7 +55,7 @@ export default function Home() {
     return array
   }
 
-  function shuffled(){
+  function shuffle(){
     const newArr = []
     for(let i = 0; i < 25; i++){
       if(i < 21){
