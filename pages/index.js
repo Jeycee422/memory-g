@@ -77,20 +77,18 @@ export default function Home() {
   }
 
   return (
-    <>
-      <div className="bg-[#0d131c] w-screen h-screen text-white text-4xl justify-center items-center flex flex-col">
-        <div className="w-96 h-max grid grid-cols-5 gap-2">
-          {tiles.map((el,id) => {
-            return <Tile key={id} name={el.name} isShow={el.isShow} showTile={el.showTile} onClick={() => {disabled || showTiles ? null :handleClick(id)}} id={id} />
-          })}
-        </div>
-        <div className='mt-4 w-96 h-12 flex justify-center items-center space-x-4'>
-          <div onClick={show} className='capitalize w-4/12 h-full bg-red-500 text-base flex justify-center items-center border border-none rounded-md cursor-pointer' style={montserrat.style}><div style={{userSelect: 'none'}}>{showTiles ? 'hide' : 'show'}</div></div>
-          <div onClick={restart}>
-            <Resetsvg className="w-7 cursor-pointer" />
-          </div>
+    <div className="no-select bg-[#0d131c] w-screen h-screen text-white text-4xl justify-center items-center flex flex-col">
+      <div className="w-80 sm:w-96 h-max grid grid-cols-5 gap-2" style={{userSelect: 'none'}}>
+        {tiles.map((el,id) => {
+          return <Tile key={id} name={el.name} isShow={el.isShow} showTile={el.showTile} onClick={() => {disabled || showTiles ? null :handleClick(id)}} id={id} />
+        })}
+      </div>
+      <div className='mt-4 w-96 h-12 flex justify-center items-center space-x-4'>
+        <button onClick={() => {disabled ? null : show()}} className='capitalize w-4/12 h-full bg-red-500 text-base flex justify-center items-center border border-none rounded-md cursor-pointer' style={montserrat.style}><div style={{userSelect: 'none'}}>{showTiles ? 'hide' : 'show'}</div></button>
+        <div onClick={() => {disabled ? null : restart()}}>
+          <Resetsvg className="w-7 cursor-pointer" />
         </div>
       </div>
-    </>
+    </div>
   )
 }
