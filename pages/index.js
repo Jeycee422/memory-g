@@ -9,6 +9,7 @@ const montserrat = Montserrat({subsets:['latin'] ,weight: '900'})
 
 export default function Home() {
   const [score, setScore] = useState(0)
+  const [highScore,setHighScore] = useState(0)
   const [showScore, setShowScore] = useState(false)
   const [tiles, setTiles] = useState([])
   const [level, setLevel] = useState()
@@ -35,7 +36,26 @@ export default function Home() {
   useEffect(() => {
     checkCounter()
     checkWin()
+    if(gameOver){
+      setBestScore()
+    }
   },[counter])
+  
+  
+  function setBestScore(){
+    if(!highScore){
+      setHighScore(score)
+      localStorage.setItem('highScore',score)
+    }
+    let bestScore = localStorage.getItem('highScore')
+
+    if(score <= bestScore){
+      localStorage.setItem('highScore',score)
+      setHighScore(score)
+    }else {
+      setHighScore(bestScore)
+    }
+  }
 
   async function checkCounter() {
     if(counter === 2){
@@ -55,7 +75,7 @@ export default function Home() {
       setShowPlay(false)
       setShowScore(false)
       setDisabled(true)
-      setScore(0)
+      // setScore(0)
     }
   }
 
@@ -75,6 +95,7 @@ export default function Home() {
     setLevelSelect(true)
     setShowPlay(true)
     setGameOver(false)
+    setScore(0)
   }
 
 
@@ -220,6 +241,7 @@ export default function Home() {
                 <Resetsvg className="w-4 sm:w-7 cursor-pointer" />
               </div>
             </div>
+            {highScore ? <div className='text-[#fbbf24] text-lg w-3/12 capitalize mt-2' style={montserrat.style}>best: {highScore}</div> : null}
           </div>
         }
     </div>
