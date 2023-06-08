@@ -9,7 +9,7 @@ const montserrat = Montserrat({subsets:['latin'] ,weight: '900'})
 
 export default function Home() {
   const [score, setScore] = useState(0)
-  const [highScore,setHighScore] = useState(0)
+  const [highScore,setHighScore] = useState(0 || getHighScore())
   const [showScore, setShowScore] = useState(false)
   const [tiles, setTiles] = useState([])
   const [level, setLevel] = useState()
@@ -41,6 +41,9 @@ export default function Home() {
     }
   },[counter])
   
+  function getHighScore(){
+    return localStorage.getItem('highScore')
+  }
   
   function setBestScore(){
     if(!highScore){
