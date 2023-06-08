@@ -40,16 +40,31 @@ export default function Home() {
       setBestScore()
     }
   },[counter])
+
+  useEffect(() => {
+    setHs()
+  },[level])
+
+  const setHs = () => {
+    const diff = level === 4 ? 'easy' : level === 6 ? 'hard' : level === 8 ? 'insane' : null 
+    const localScore = localStorage.getItem(diff)
+    if(localScore){
+      setHighScore(localScore)
+    } else {
+      setHighScore(0)
+    }
+  }
   
   function setBestScore(){
+    const diff = level === 4 ? 'easy' : level === 6 ? 'hard' : level === 8 ? 'insane' : null 
     if(!highScore){
       setHighScore(score)
-      localStorage.setItem('highScore',score)
+      localStorage.setItem(diff,score)
     }
-    let bestScore = localStorage.getItem('highScore')
+    let bestScore = localStorage.getItem(diff)
 
     if(score <= bestScore){
-      localStorage.setItem('highScore',score)
+      localStorage.setItem(diff,score)
       setHighScore(score)
     }else {
       setHighScore(bestScore)
@@ -232,7 +247,8 @@ export default function Home() {
                 {board}
               </div> : null
             }
-            <div className='mt-4 w-96 h-8 sm:h-12 flex justify-center items-center space-x-4'>
+            <div className='mt-4 w-11/12 h-8 sm:h-12 flex justify-center items-center space-x-4'>
+              {highScore ? <div className='text-[#fbbf24] text-lg w-24 capitalize text-center' style={montserrat.style}>best: {highScore}</div> : null}
               <button onClick={showPlay ? play : showScore ? null : playAgain} className='capitalize w-3/12 sm:w-4/12 h-full bg-red-500 text-[10px] sm:text-base flex justify-center items-center border border-none rounded-md cursor-pointer' style={montserrat.style}><div style={{userSelect: 'none'}}>{showPlay ? 'Play' : showScore ? `Score: ${score}` : 'Play Again'}</div>
               </button>
               
@@ -240,7 +256,6 @@ export default function Home() {
                 <Resetsvg className="w-4 sm:w-7 cursor-pointer" />
               </div>
             </div>
-            {highScore ? <div className='text-[#fbbf24] text-lg w-3/12 capitalize mt-2' style={montserrat.style}>best: {highScore}</div> : null}
           </div>
         }
     </div>
