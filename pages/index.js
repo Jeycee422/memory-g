@@ -35,7 +35,7 @@ export default function Home() {
   useEffect(() => {
     checkCounter()
     checkWin()
-  },[counter])
+  },[counter,checkCounter,checkWin])
 
   async function checkCounter() {
     if(counter === 2){
