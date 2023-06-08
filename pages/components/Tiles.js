@@ -6,7 +6,7 @@ import Tile from './Tile'
 
 // const montserrat = Montserrat({subsets: ['latin'],weight: "800"})
 export default function Tiles(props){
-    const montserrat = props.font
+    const monts = props.font
     return (
         <>
             {props.isShow || props.showTile
@@ -14,7 +14,7 @@ export default function Tiles(props){
                 ? <Tile name={props.name} color={props.color} />
             
                 :<div onClick={props.onClick} className="bg-[#053876] h-12 w-12 sm:w-[72px] sm:h-[72px] border border-none rounded-lg sm:rounded-xl cursor-pointer">
-                    <div className="bg-[#2281f6] h-[36px] sm:h-16 sm:text-4xl border border-none rounded-lg sm:rounded-xl justify-center items-center flex text-2xl" style={montserrat.style}>
+                    <div className="bg-[#2281f6] h-[36px] sm:h-16 sm:text-4xl border border-none rounded-lg sm:rounded-xl justify-center items-center flex text-2xl" style={monts}>
                         {/* <Question className="w-8 h-8" /> */}?
                     </div>
                 </div>

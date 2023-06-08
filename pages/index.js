@@ -29,13 +29,13 @@ export default function Home() {
   ]
 
   const board = tiles.map((el,id) => {
-    return <Tiles key={id} name={el.name} color={el.color} isShow={el.isShow} showTile={el.showTile} onClick={() => {disabled ? null :handleClick(id)}} id={id} font={montserrat} />
+    return <Tiles key={id} name={el.name} color={el.color} isShow={el.isShow} showTile={el.showTile} onClick={() => {disabled ? null :handleClick(id)}} id={id} font={montserrat.style} />
   })
   
   useEffect(() => {
     checkCounter()
     checkWin()
-  },[counter,checkCounter,checkWin])
+  },[counter])
 
   async function checkCounter() {
     if(counter === 2){
