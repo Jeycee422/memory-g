@@ -131,6 +131,7 @@ export default function Home() {
     setDisabled(true)
     setShowPlay(true)
     setScore(0)
+    setCounter(0)
   }
 
   async function handleClick(id){
@@ -228,6 +229,7 @@ export default function Home() {
     setShowPlay(true)
     setDisabled(true)
     setScore(0)
+    setCounter(0)
   }
 
   return (
