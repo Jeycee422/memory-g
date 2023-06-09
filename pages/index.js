@@ -9,7 +9,9 @@ const montserrat = Montserrat({subsets:['latin'] ,weight: '900'})
 
 export default function Home() {
   const [score, setScore] = useState(0)
-  const [highScore,setHighScore] = useState(0)
+  const [easy,setEasy] = useState(0)
+  const [hard,setHard] = useState(0)
+  const [insane,setInsane] = useState(0)
   const [showScore, setShowScore] = useState(false)
   const [tiles, setTiles] = useState([])
   const [level, setLevel] = useState()
@@ -32,6 +34,12 @@ export default function Home() {
   const board = tiles.map((el,id) => {
     return <Tiles key={id} name={el.name} color={el.color} isShow={el.isShow} showTile={el.showTile} onClick={() => {disabled ? null :handleClick(id)}} id={id} font={montserrat.style} />
   })
+
+  const easyHs = easy ? <div className='text-[#fefce8] text-sm sm:text-lg w-24 capitalize text-center sm:mr-4 flex flex-row items-center' style={montserrat.style}>best: <div className='text-[#fde047] text-lg sm:text-2xl ml-2'>{easy}</div></div> : null
+
+  const hardHs = hard ? <div className='text-[#fefce8] text-sm sm:text-lg w-24 capitalize text-center sm:mr-4 flex flex-row items-center' style={montserrat.style}>best: <div className='text-[#fde047] text-lg sm:text-2xl ml-2'>{hard}</div></div> : null
+
+  const insaneHs = insane ? <div className='text-[#fefce8] text-sm sm:text-lg w-24 capitalize text-center sm:mr-4 flex flex-row items-center' style={montserrat.style}>best: <div className='text-[#fde047] text-lg sm:text-2xl ml-2'>{insane}</div></div> : null
   
   useEffect(() => {
     checkCounter()
@@ -49,25 +57,26 @@ export default function Home() {
     const diff = level === 4 ? 'easy' : level === 6 ? 'hard' : level === 8 ? 'insane' : null 
     const localScore = localStorage.getItem(diff)
     if(localScore){
-      setHighScore(localScore)
+      level === 4 ? setEasy(localScore) : level === 6 ? setHard(localScore) : level === 8 ? setInsane(localScore) : null
+      // setHighScore(localScore)
     } else {
-      setHighScore(0)
+      level === 4 ? setEasy(0) : level === 6 ? setHard(0) : level === 8 ? setInsane(0) : null
     }
   }
   
   function setBestScore(){
     const diff = level === 4 ? 'easy' : level === 6 ? 'hard' : level === 8 ? 'insane' : null 
-    if(!highScore){
-      setHighScore(score)
+    if(!easy || !hard || !insane){
+      level === 4 ? setEasy(score) : level === 6 ? setHard(score) : level === 8 ? setInsane(score) : null
       localStorage.setItem(diff,score)
     }
     let bestScore = localStorage.getItem(diff)
 
     if(score <= bestScore){
       localStorage.setItem(diff,score)
-      setHighScore(score)
+      level === 4 ? setEasy(score) : level === 6 ? setHard(score) : level === 8 ? setInsane(score) : null
     }else {
-      setHighScore(bestScore)
+      level === 4 ? setEasy(bestScore) : level === 6 ? setHard(bestScore) : level === 8 ? setInsane(bestScore) : null
     }
   }
 
@@ -248,7 +257,7 @@ export default function Home() {
               </div> : null
             }
             <div className='mt-4 w-11/12 h-8 sm:h-12 flex justify-center items-center'>
-              {highScore ? <div className='text-[#fefce8] text-sm sm:text-lg w-24 capitalize text-center sm:mr-4 flex flex-row items-center' style={montserrat.style}>best: <div className='text-[#fde047] text-lg sm:text-2xl ml-2'>{highScore}</div></div> : null}
+              {level === 4 ? easyHs : level === 6 ? hardHs : level === 8 ? insaneHs : null}
               <button onClick={showPlay ? play : showScore ? null : playAgain} className='mr-2 sm:mr-4 capitalize w-28 sm:w-40 h-full bg-red-500 text-xs sm:text-base flex justify-center items-center border border-none rounded-md cursor-pointer' style={montserrat.style}><div style={{userSelect: 'none'}}>{showPlay ? 'Play' : showScore ? `Score: ${score}` : 'Play Again'}</div>
               </button>
               

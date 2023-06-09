@@ -68,23 +68,23 @@ export default function Tile({name,color}){
     return (
         <>
             {
-                color === '#ef4444' ? <div className={`h-12 w-12 sm:h-[72px] sm:w-[72px] border border-[#ef4444] border-[3px] sm:border-4 rounded-md sm:rounded-xl`} id='no-select'>
-                    <div className="h-10 sm:h-16 border border-none rounded-md sm:rounded-xl justify-center items-center flex">
+                color === '#ef4444' ? <div className={`h-11 w-11 sm:h-[72px] sm:w-[72px] border border-[#ef4444] border-[3px] sm:border-4 rounded-md sm:rounded-xl`} id='no-select'>
+                    <div className="h-9 sm:h-16 border border-none rounded-md sm:rounded-xl justify-center items-center flex">
                         {Tilesvg}
                     </div>
                 </div>
-                : color === '#fbbf24' ? <div className={`h-12 w-12 sm:h-[72px] sm:w-[72px] border border-[#fbbf24] border-[3px] sm:border-4 rounded-md sm:rounded-xl`} id='no-select'>
-                    <div className="h-10 sm:h-16 border border-none rounded-md sm:rounded-xl justify-center items-center flex">
+                : color === '#fbbf24' ? <div className={`h-11 w-11 sm:h-[72px] sm:w-[72px] border border-[#fbbf24] border-[3px] sm:border-4 rounded-md sm:rounded-xl`} id='no-select'>
+                    <div className="h-9 sm:h-16 border border-none rounded-md sm:rounded-xl justify-center items-center flex">
                         {Tilesvg}
                     </div>
                 </div>
-                : color === '#3b82f6' ? <div className={`h-12 w-12 sm:h-[72px] sm:w-[72px] border border-[#3b82f6] border-[3px] sm:border-4 rounded-md sm:rounded-xl`} id='no-select'>
-                    <div className="h-10 sm:h-16 border border-none rounded-md sm:rounded-xl justify-center items-center flex">
+                : color === '#3b82f6' ? <div className={`h-11 w-11 sm:h-[72px] sm:w-[72px] border border-[#3b82f6] border-[3px] sm:border-4 rounded-md sm:rounded-xl`} id='no-select'>
+                    <div className="h-9 sm:h-16 border border-none rounded-md sm:rounded-xl justify-center items-center flex">
                         {Tilesvg}
                     </div>
                 </div>
-                : color === '#22c55e' ? <div className={`h-12 w-12 sm:h-[72px] sm:w-[72px] border border-[#22c55e] border-[3px] sm:border-4 rounded-md sm:rounded-xl`} id='no-select'>
-                    <div className="h-10 sm:h-16 border border-none rounded-md sm:rounded-xl justify-center items-center flex">
+                : color === '#22c55e' ? <div className={`h-11 w-11 sm:h-[72px] sm:w-[72px] border border-[#22c55e] border-[3px] sm:border-4 rounded-md sm:rounded-xl`} id='no-select'>
+                    <div className="h-9 sm:h-16 border border-none rounded-md sm:rounded-xl justify-center items-center flex">
                         {Tilesvg}
                     </div>
                 </div> : null
