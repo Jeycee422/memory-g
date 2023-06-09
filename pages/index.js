@@ -4,6 +4,7 @@ import ConfettiExplosion from 'react-confetti-explosion';
 import { Montserrat } from 'next/font/google'
 import Resetsvg from '../public/reset.svg'
 import Brainsvg from '../public/brain.svg'
+import Exitsvg from '../public/exit.svg'
 
 const montserrat = Montserrat({subsets:['latin'] ,weight: '900'})
 
@@ -39,7 +40,7 @@ export default function Home() {
 
   const hardHs = hard ? <div className='text-[#fefce8] text-sm sm:text-lg w-24 capitalize text-center sm:mr-4 flex flex-row items-center' style={montserrat.style}>best: <div className='text-[#fde047] text-lg sm:text-2xl ml-2'>{hard}</div></div> : null
 
-  const insaneHs = insane ? <div className='text-[#fefce8] text-sm sm:text-lg w-24 capitalize text-center sm:mr-4 flex flex-row items-center' style={montserrat.style}>best: <div className='text-[#fde047] text-lg sm:text-2xl ml-2'>{insane}</div></div> : null
+  const insaneHs = insane ? <div className='ml-4 text-[#fefce8] text-sm sm:text-lg w-24 capitalize text-center sm:mr-4 flex flex-row items-center' style={montserrat.style}>best: <div className='text-[#fde047] text-lg sm:text-2xl ml-2'>{insane}</div></div> : null
   
   useEffect(() => {
     checkCounter()
@@ -224,6 +225,14 @@ export default function Home() {
     setLevelSelect(false)
     setGameOver(false)
   }
+  
+  function goBack(){
+    setLevelSelect(true)
+    setGameOver(false)
+    setShowPlay(true)
+    setDisabled(true)
+    setScore(0)
+  }
 
   return (
     <div className="no-select bg-[#0d131c] w-full sm:w-screen h-screen text-white text-4xl justify-center items-center flex flex-col">
@@ -244,7 +253,7 @@ export default function Home() {
           </div>
         : 
           <div className='justify-center items-center flex flex-col'>
-            {gameOver && <ConfettiExplosion force={0.8} duration={3000} particleCount={250} width={1600}/>}
+            {gameOver ? <ConfettiExplosion force={0.8} duration={3000} particleCount={250} width={1600}/> : null}
             {
               level === 4 ? <div className="grid grid-cols-4 sm:gap-2 gap-1.5" style={{userSelect: 'none'}}>
                 {board}
@@ -258,12 +267,13 @@ export default function Home() {
               </div> : null
             }
             <div className='mt-4 w-11/12 h-8 sm:h-12 flex justify-center items-center'>
+              <div className='mr-6' onClick={goBack}><Exitsvg className="w-7 h-7 sm:w-9 sm:h-9 cursor-pointer" /></div> 
               {level === 4 ? easyHs : level === 6 ? hardHs : level === 8 ? insaneHs : null}
               <button onClick={showPlay ? play : showScore ? null : playAgain} className='mr-2 sm:mr-4 capitalize w-28 sm:w-40 h-full bg-red-500 text-xs sm:text-base flex justify-center items-center border border-none rounded-md cursor-pointer' style={montserrat.style}><div style={{userSelect: 'none'}}>{showPlay ? 'Play' : showScore ? `Score: ${score}` : 'Play Again'}</div>
               </button>
               
               <div onClick={restart}>
-                <Resetsvg className="w-5 sm:w-7 cursor-pointer" />
+                <Resetsvg className="w-6 sm:w-8 cursor-pointer" />
               </div>
             </div>
           </div>
