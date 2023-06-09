@@ -56,7 +56,7 @@ export default function Home() {
 
   const setHs = () => {
     const diff = level === 4 ? 'easy' : level === 6 ? 'hard' : level === 8 ? 'insane' : null 
-    const localScore = localStorage.getItem(diff)
+    const localScore = parseInt(localStorage.getItem(diff))
     if(localScore){
       level === 4 ? setEasy(localScore) : level === 6 ? setHard(localScore) : level === 8 ? setInsane(localScore) : null
       // setHighScore(localScore)
@@ -67,11 +67,7 @@ export default function Home() {
   
   function setBestScore(){
     const diff = level === 4 ? 'easy' : level === 6 ? 'hard' : level === 8 ? 'insane' : null 
-    if(!easy || !hard || !insane){
-      level === 4 ? setEasy(score) : level === 6 ? setHard(score) : level === 8 ? setInsane(score) : null
-      localStorage.setItem(diff,score)
-    }
-    let bestScore = localStorage.getItem(diff)
+    let bestScore = parseInt(localStorage.getItem(diff))
 
     if(score <= bestScore){
       localStorage.setItem(diff,score)
@@ -177,10 +173,10 @@ export default function Home() {
   function shuffle(num){
     
     let colorArr = []
-    const red = objects.filter(obj => obj.color === '#ef4444')
-    const green = objects.filter(obj => obj.color === '#22c55e')
-    const blue = objects.filter(obj => obj.color === '#3b82f6')
-    const yellow = objects.filter(obj => obj.color === '#fbbf24')
+    const red = shuffleArray(objects.filter(obj => obj.color === '#ef4444'))
+    const green = shuffleArray(objects.filter(obj => obj.color === '#22c55e'))
+    const blue = shuffleArray(objects.filter(obj => obj.color === '#3b82f6'))
+    const yellow = shuffleArray(objects.filter(obj => obj.color === '#fbbf24'))
 
     if(num === 16){
       for(let i = 0; i < 2;i++){
