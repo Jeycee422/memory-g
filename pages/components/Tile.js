@@ -63,7 +63,7 @@ export default function Tile({name,color}){
         : name === 'smile' ? <Smilesvg className="w-6 h-6 sm:h-10 sm:w-10"/>
         : name === 'strawberry' ? <Strawberrysvg className="w-6 h-6 sm:h-10 sm:w-10"/>
         : name === 'tomato' ? <Tomatosvg className="w-6 h-6 sm:h-10 sm:w-10"/>
-        : name === 'wink' ? <Winksvg className="w-6 h-6 sm:h-10 sm:w-10"/> : null
+        : name === 'wink' ? <Winksvg className="w-6 h-6 sm:h-10 sm:w-10"/> : <div></div>
 
     return (
         <>
@@ -87,7 +87,7 @@ export default function Tile({name,color}){
                     <div className="h-9 sm:h-16 border border-none rounded-md sm:rounded-xl justify-center items-center flex">
                         {Tilesvg}
                     </div>
-                </div> : null
+                </div> : <div></div>
             }
         </>
     )

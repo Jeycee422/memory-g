@@ -108,6 +108,7 @@ export default function Home() {
     setGameOver(false)
     setShowPlay(false)
     setShowScore(true)
+    console.log(tiles)
   }
 
   async function playAgain(){
@@ -179,6 +180,12 @@ export default function Home() {
   function shuffle(num){
     
     let colorArr = []
+    const dummyTile = {
+      name: '',
+      isShow: true,
+      showTile: true,
+      color: ''
+    }
     const red = shuffleArray(objects.filter(obj => obj.color === '#ef4444'))
     const green = shuffleArray(objects.filter(obj => obj.color === '#22c55e'))
     const blue = shuffleArray(objects.filter(obj => obj.color === '#3b82f6'))
@@ -191,13 +198,23 @@ export default function Home() {
         colorArr.push(blue[i])
         colorArr.push(yellow[i])
       }
+
+      setTiles(shuffleArray(multiArr(num,colorArr)))
     }else if(num === 36){
-      for(let i = 0; i < 7;i++){
+      for(let i = 0; i < 4;i++){
         colorArr.push(red[i])
         colorArr.push(green[i])
         colorArr.push(blue[i])
         colorArr.push(yellow[i])
       }
+
+      const newArr = shuffleArray(multiArr(num-4,colorArr))
+      newArr.splice(0,0,dummyTile)
+      newArr.splice(5,0,dummyTile)
+      newArr.splice(30,0,dummyTile)
+      newArr.splice(35,0,dummyTile)
+      setTiles(newArr)
+
     }else {
       for(let i = 0; i < 8;i++){
         colorArr.push(red[i])
@@ -205,18 +222,21 @@ export default function Home() {
         colorArr.push(blue[i])
         colorArr.push(yellow[i])
       }
+
+      setTiles(shuffleArray(multiArr(num,colorArr)))
     }
 
+  }
 
-    const shuffledObjects = shuffleArray(colorArr)
+  function multiArr(num,arr){
     const newArr = []
     for(let i = 0; i < num/2; i++){
       for(let j = 0; j < 2; j++){
-        newArr.push(shuffledObjects[i])
+        newArr.push(arr[i])
       }
     }
-    const shuffled = shuffleArray(newArr)
-    setTiles(shuffled)
+
+    return newArr
   }
 
   async function handleLevel(lvl){
