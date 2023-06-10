@@ -132,6 +132,7 @@ export default function Home() {
     setShowPlay(true)
     setScore(0)
     setCounter(0)
+    setSelectedTile([])
   }
 
   async function handleClick(id){
@@ -230,6 +231,7 @@ export default function Home() {
     setDisabled(true)
     setScore(0)
     setCounter(0)
+    setSelectedTile([])
   }
 
   return (
