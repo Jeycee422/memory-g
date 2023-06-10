@@ -15,7 +15,7 @@ export default function Home() {
   const [insane,setInsane] = useState(0)
   const [showScore, setShowScore] = useState(false)
   const [tiles, setTiles] = useState([])
-  const [level, setLevel] = useState()
+  const [level, setLevel] = useState(null)
   const [levelSelect, setLevelSelect] = useState(true)
   const [counter,setCounter] = useState(0)
   const [disabled, setDisabled] = useState(true)
@@ -55,24 +55,26 @@ export default function Home() {
   },[level])
 
   const setHs = () => {
-    const diff = level === 4 ? 'easy' : level === 6 ? 'hard' : level === 8 ? 'insane' : null 
+    const diff = level === 4 ? 'easy' : level === 6 ? 'hard' : 'insane'
     const localScore = parseInt(localStorage.getItem(diff))
-    if(localScore){
-      level === 4 ? setEasy(localScore) : level === 6 ? setHard(localScore) : level === 8 ? setInsane(localScore) : null
+    if(localScore >= 0){
+      level === 4 ? setEasy(localScore) : level === 6 ? setHard(localScore) : setInsane(localScore)
     } else {
-      level === 4 ? setEasy(0) : level === 6 ? setHard(0) : level === 8 ? setInsane(0) : null
+      localStorage.setItem('easy',0)
+      localStorage.setItem('hard',0)
+      localStorage.setItem('insane',0)
     }
   }
   
   function setBestScore(){
-    const diff = level === 4 ? 'easy' : level === 6 ? 'hard' : level === 8 ? 'insane' : null 
+    const diff = level === 4 ? 'easy' : level === 6 ? 'hard' : 'insane' 
     let bestScore = parseInt(localStorage.getItem(diff))
 
-    if(score <= bestScore){
+    if(score <= bestScore || bestScore === 0){
       localStorage.setItem(diff,score)
-      level === 4 ? setEasy(score) : level === 6 ? setHard(score) : level === 8 ? setInsane(score) : null
+      level === 4 ? setEasy(score) : level === 6 ? setHard(score) : setInsane(score)
     }else {
-      level === 4 ? setEasy(bestScore) : level === 6 ? setHard(bestScore) : level === 8 ? setInsane(bestScore) : null
+      level === 4 ? setEasy(bestScore) : level === 6 ? setHard(bestScore) : setInsane(bestScore)
     }
   }
 
@@ -106,7 +108,6 @@ export default function Home() {
     setGameOver(false)
     setShowPlay(false)
     setShowScore(true)
-    console.log(tiles)
   }
 
   async function playAgain(){
