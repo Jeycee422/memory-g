@@ -114,7 +114,7 @@ export default function Home() {
     await sleep(250)
     const diff = level === 4 ? 16 : level === 6 ? 36 : level === 8 ? 64 : null
     shuffle(diff)
-    setDisabled(true)
+    setDisabled(false)
     setGameOver(false)
     setShowScore(true)
     setScore(0)
