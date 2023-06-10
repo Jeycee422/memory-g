@@ -110,12 +110,16 @@ export default function Home() {
     setShowScore(true)
   }
 
-  function playAgain(){
+  async function playAgain(){
+    await sleep(250)
+    const diff = level === 4 ? 16 : level === 6 ? 36 : level === 8 ? 64 : null
+    shuffle(diff)
     setDisabled(true)
-    setLevelSelect(true)
-    setShowPlay(true)
     setGameOver(false)
+    setShowScore(true)
     setScore(0)
+    setCounter(0)
+    setSelectedTile([])
   }
 
 
