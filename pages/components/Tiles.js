@@ -1,10 +1,5 @@
-// import Question from '../../public/question.svg'
-// import {Montserrat} from 'next/font/google'
-// import Coin from './Coin'
-// import Bomb from './Bomb'
 import Tile from './Tile'
 
-// const montserrat = Montserrat({subsets: ['latin'],weight: "800"})
 export default function Tiles(props){
     const monts = props.font
     return (

@@ -59,7 +59,6 @@ export default function Home() {
     const localScore = parseInt(localStorage.getItem(diff))
     if(localScore){
       level === 4 ? setEasy(localScore) : level === 6 ? setHard(localScore) : level === 8 ? setInsane(localScore) : null
-      // setHighScore(localScore)
     } else {
       level === 4 ? setEasy(0) : level === 6 ? setHard(0) : level === 8 ? setInsane(0) : null
     }
@@ -95,7 +94,6 @@ export default function Home() {
       setShowPlay(false)
       setShowScore(false)
       setDisabled(true)
-      // setScore(0)
     }
   }
 
@@ -113,7 +111,7 @@ export default function Home() {
 
   async function playAgain(){
     await sleep(250)
-    const diff = level === 4 ? 16 : level === 6 ? 36 : level === 8 ? 64 : null
+    const diff = level === 4 ? 16 : level === 6 ? 32 : level === 8 ? 64 : null
     shuffle(diff)
     setDisabled(false)
     setGameOver(false)
@@ -131,7 +129,7 @@ export default function Home() {
   
   async function restart() {
     await sleep(250)
-    const diff = level === 4 ? 16 : level === 6 ? 36 : level === 8 ? 64 : null
+    const diff = level === 4 ? 16 : level === 6 ? 32 : level === 8 ? 64 : null
     shuffle(diff)
     setDisabled(true)
     setShowPlay(true)
@@ -156,7 +154,6 @@ export default function Home() {
         }
         return newArr
       })
-      // setScore ++
     }else if(selectedTile.length >= 1){
       setScore(a => a + 1)
     }
@@ -165,7 +162,6 @@ export default function Home() {
       newState[id] = {...newState[id],showTile: true}
       return newState
     })
-    // await sleep(500)
     setCounter(a => a + 1)
   }
 
@@ -200,7 +196,7 @@ export default function Home() {
       }
 
       setTiles(shuffleArray(multiArr(num,colorArr)))
-    }else if(num === 36){
+    }else if(num === 32){
       for(let i = 0; i < 4;i++){
         colorArr.push(red[i])
         colorArr.push(green[i])
@@ -208,7 +204,7 @@ export default function Home() {
         colorArr.push(yellow[i])
       }
 
-      const newArr = shuffleArray(multiArr(num-4,colorArr))
+      const newArr = shuffleArray(multiArr(num,colorArr))
       newArr.splice(0,0,dummyTile)
       newArr.splice(5,0,dummyTile)
       newArr.splice(30,0,dummyTile)
@@ -241,7 +237,7 @@ export default function Home() {
 
   async function handleLevel(lvl){
     await sleep(250)
-    const diff = lvl === 4 ? 16 : lvl === 6 ? 36 : lvl === 8 ? 64 : null
+    const diff = lvl === 4 ? 16 : lvl === 6 ? 32 : lvl === 8 ? 64 : null
     shuffle(diff)
     setLevel(lvl)
     setLevelSelect(false)
