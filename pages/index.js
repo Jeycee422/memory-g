@@ -197,8 +197,8 @@ export default function Home() {
       }
 
       setTiles(shuffleArray(multiArr(num,colorArr)))
-    }else if(num === 32){
-      for(let i = 0; i < 4;i++){
+    }else if(num === 40){
+      for(let i = 0; i < 5;i++){
         colorArr.push(red[i])
         colorArr.push(green[i])
         colorArr.push(blue[i])
@@ -207,9 +207,29 @@ export default function Home() {
 
       const newArr = shuffleArray(multiArr(num,colorArr))
       newArr.splice(0,0,dummyTile)
+      newArr.splice(1,0,dummyTile)
+      newArr.splice(2,0,dummyTile)
       newArr.splice(5,0,dummyTile)
-      newArr.splice(30,0,dummyTile)
-      newArr.splice(35,0,dummyTile)
+      newArr.splice(6,0,dummyTile)
+      newArr.splice(7,0,dummyTile)
+      newArr.splice(8,0,dummyTile)
+      newArr.splice(9,0,dummyTile)
+      newArr.splice(14,0,dummyTile)
+      newArr.splice(15,0,dummyTile)
+      newArr.splice(16,0,dummyTile)
+      newArr.splice(23,0,dummyTile)
+      newArr.splice(40,0,dummyTile)
+      newArr.splice(47,0,dummyTile)
+      newArr.splice(48,0,dummyTile)
+      newArr.splice(49,0,dummyTile)
+      newArr.splice(54,0,dummyTile)
+      newArr.splice(55,0,dummyTile)
+      newArr.splice(56,0,dummyTile)
+      newArr.splice(57,0,dummyTile)
+      newArr.splice(58,0,dummyTile)
+      newArr.splice(61,0,dummyTile)
+      newArr.splice(62,0,dummyTile)
+      newArr.splice(63,0,dummyTile)
       setTiles(newArr)
 
     }else {
@@ -238,7 +258,7 @@ export default function Home() {
 
   async function handleLevel(lvl){
     await sleep(250)
-    const diff = lvl === 4 ? 16 : lvl === 6 ? 32 : lvl === 8 ? 64 : null
+    const diff = lvl === 4 ? 16 : lvl === 6 ? 40 : lvl === 8 ? 64 : null
     shuffle(diff)
     setLevel(lvl)
     setLevelSelect(false)
@@ -280,7 +300,7 @@ export default function Home() {
                 {board}
                 
               </div>
-              : level === 6 ? <div className="grid grid-cols-6 sm:gap-2 gap-1.5" style={{userSelect: 'none'}}>
+              : level === 6 ? <div className="grid grid-cols-8 sm:gap-2 gap-1" style={{userSelect: 'none'}}>
                 {board}
               </div>
               : level === 8 ? <div className="grid grid-cols-8 sm:gap-2 gap-1" style={{userSelect: 'none'}}>
