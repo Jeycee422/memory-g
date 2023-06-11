@@ -130,7 +130,7 @@ export default function Home() {
   
   async function restart() {
     await sleep(250)
-    const diff = level === 4 ? 16 : level === 6 ? 32 : level === 8 ? 64 : null
+    const diff = level === 4 ? 16 : level === 6 ? 40 : level === 8 ? 64 : null
     shuffle(diff)
     setDisabled(true)
     setShowPlay(true)
