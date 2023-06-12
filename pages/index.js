@@ -302,15 +302,15 @@ export default function Home() {
       {levelSelect
         ?
           <div className='flex flex-col space-y-10 items-center' style={montserrat.style}>
-            <div className='text-3xl sm:text-5xl space-x-4 flex flex-row justify-center items-center mb-6'><Brainsvg className='w-10 h-10 sm:h-14 sm:w-14' /><div>Memory Game</div></div>
-            <button className='text-xl sm:text-3xl text-[#d97706] hover:text-[#f59e0b] text-left w-36 sm:w-60' onClick={() => {handleLevel(4)}}>
+            <div className='text-3xl sm:text-5xl space-x-4 flex flex-row justify-center items-center mb-6'><Brainsvg className='animate-ping w-10 h-10 sm:h-14 sm:w-14' /><div>Memory Game</div></div>
+            <button className='transition ease-in-out delay-150 hover:scale-125 text-xl sm:text-3xl text-[#d97706] hover:text-[#f59e0b] text-left' onClick={() => {handleLevel(4)}}>
               <div>Easy</div>
             </button>
 
-            <button className='text-xl sm:text-3xl text-[#b91c1c] hover:text-[#dc2626] text-left w-36 sm:w-60' onClick={() => {handleLevel(6)}}>
+            <button className='transition ease-in-out delay-150 hover:scale-125 text-xl sm:text-3xl text-[#b91c1c] hover:text-[#dc2626] text-left' onClick={() => {handleLevel(6)}}>
               <div>Hard</div>
             </button>
-            <button className='text-xl sm:text-3xl text-[#881337] hover:text-[#be123c] text-left w-36 sm:w-60' onClick={() => {handleLevel(8)}}>
+            <button className='transition ease-in-out delay-150 hover:scale-125 text-xl sm:text-3xl text-[#881337] hover:text-[#be123c] text-left' onClick={() => {handleLevel(8)}}>
               <div>Insane</div>
             </button>
           </div>
@@ -330,13 +330,13 @@ export default function Home() {
               </div> : null
             }
             <div className='mt-4 w-11/12 h-8 sm:h-12 flex justify-center items-center'>
-              <div className='mr-6' onClick={goBack}><Exitsvg className="w-7 h-7 sm:w-9 sm:h-9 cursor-pointer" /></div> 
+              <div className='mr-6' onClick={goBack}><Exitsvg className={`${gameOver ? 'animate-none' : 'animate-bounceLeft'} w-7 h-7 sm:w-9 sm:h-9 cursor-pointer`} /></div> 
               {level === 4 ? easyHs : level === 6 ? hardHs : level === 8 ? insaneHs : null}
-              <button onClick={showPlay ? play : showScore ? null : playAgain} className='mr-2 sm:mr-4 capitalize w-28 sm:w-40 h-full bg-red-500 text-xs sm:text-base flex justify-center items-center border border-none rounded-md cursor-pointer' style={montserrat.style}><div style={{userSelect: 'none'}}>{showPlay ? 'Play' : showScore ? `Score: ${score}` : 'Play Again'}</div>
+              <button onClick={showPlay ? play : showScore ? null : playAgain} className={`${gameOver ? 'animate-ping' : ''} transition ease-in-out delay-150 hover:scale-110 mr-2 sm:mr-4 capitalize w-28 sm:w-40 h-full bg-red-500 text-xs sm:text-base flex justify-center items-center border border-none rounded-md cursor-pointer`} style={montserrat.style}><div style={{userSelect: 'none'}}>{showPlay ? 'Play' : showScore ? `Score: ${score}` : 'Play Again'}</div>
               </button>
               
               <div onClick={restart}>
-                <Resetsvg className="w-6 sm:w-8 cursor-pointer" />
+                <Resetsvg className="hover:animate-[spin_1.5s_linear_infinite] w-6 sm:w-8 cursor-pointer" />
               </div>
             </div>
           </div>

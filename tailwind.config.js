@@ -6,6 +6,7 @@ module.exports = {
       animation: {
         blinkOne: 'blinkOne 2.3s infinite',
         blink: 'blink 2.3s infinite',
+        bounceLeft: 'bounceLeft 1s infinite',
       },
       keyframes: {
         blinkOne: {
@@ -64,6 +65,22 @@ module.exports = {
           },
           '100%': {
             opacity: '0'
+          }
+        },
+        ping: {
+          '75%, 100%': {
+            transform: 'scale(1.1)',
+            opacity: '1'
+          }
+        },
+        bounceLeft: {
+          '0%, 100%': {
+            transform: 'translateX(-25%)',
+            animationTimingFunction: 'cubic-bezier(0.8, 0, 1, 1)'
+          },
+          '50%': {
+            transform: 'translateX(0)',
+            animationTimingFunction: 'cubic-bezier(0, 0, 0.2, 1)'
           }
         }
       }
