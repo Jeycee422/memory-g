@@ -23,6 +23,22 @@ export default function Home() {
   const [showPlay, setShowPlay] = useState(true)
   const [selectedTile,setSelectedTile] = useState([])
 
+  const animateClasses = ['animate-blink','animate-blinkOne','animate-blink','animate-blinkOne','animate-blink','animate-blinkOne','animate-blink','animate-blinkOne',
+  'animate-blinkOne','animate-blink','animate-blinkOne','animate-blink','animate-blinkOne','animate-blink','animate-blinkOne','animate-blink',
+  'animate-blink','animate-blinkOne','animate-blink','animate-blinkOne','animate-blink','animate-blinkOne','animate-blink','animate-blinkOne',
+  'animate-blinkOne','animate-blink','animate-blinkOne','animate-blink','animate-blinkOne','animate-blink','animate-blinkOne','animate-blink',
+  'animate-blink','animate-blinkOne','animate-blink','animate-blinkOne','animate-blink','animate-blinkOne','animate-blink','animate-blinkOne',
+  'animate-blinkOne','animate-blink','animate-blinkOne','animate-blink','animate-blinkOne','animate-blink','animate-blinkOne','animate-blink',
+  'animate-blink','animate-blinkOne','animate-blink','animate-blinkOne','animate-blink','animate-blinkOne','animate-blink','animate-blinkOne',
+  'animate-blinkOne','animate-blink','animate-blinkOne','animate-blink','animate-blinkOne','animate-blink','animate-blinkOne','animate-blink'
+  ]
+  const animateClassesTwo = [
+    'animate-blink','animate-blinkOne','animate-blink','animate-blinkOne',
+    'animate-blinkOne','animate-blink','animate-blinkOne','animate-blink',
+    'animate-blink','animate-blinkOne','animate-blink','animate-blinkOne',
+    'animate-blinkOne','animate-blink','animate-blinkOne','animate-blink',
+  ]
+
   const objects = [
     {name:'coin',isShow:false,showTile:false,color:'#fbbf24'},{name:'bb',isShow:false,showTile:false,color:'#fbbf24'},{name:'bhole',isShow:false,showTile:false,color:'#fbbf24'},{name:'cassiopeia',isShow:false,showTile:false,color:'#fbbf24'},{name:'dipper',isShow:false,showTile:false,color:'#fbbf24'},{name:'laser',isShow:false,showTile:false,color:'#fbbf24'},{name:'moon',isShow:false,showTile:false,color:'#fbbf24'},{name:'naut',isShow:false,showTile:false,color:'#fbbf24'},
     {name:'apple',isShow:false,showTile:false,color:'#ef4444'},{name:'bomb',isShow:false,showTile:false,color:'#ef4444'},{name:'pepper',isShow:false,showTile:false,color:'#ef4444'},{name:'strawberry',isShow:false,showTile:false,color:'#ef4444'},{name:'tomato',isShow:false,showTile:false,color:'#ef4444'},{name:'sleep',isShow:false,showTile:false,color:'#ef4444'},{name:'wink',isShow:false,showTile:false,color:'#ef4444'},{name:'happy',isShow:false,showTile:false,color:'#ef4444'},
@@ -33,7 +49,8 @@ export default function Home() {
   ]
 
   const board = tiles.map((el,id) => {
-    return <Tiles key={id} name={el.name} color={el.color} isShow={el.isShow} showTile={el.showTile} onClick={() => {disabled ? null :handleClick(id)}} id={id} font={montserrat.style} />
+    const animationClass = level === 4 ? animateClassesTwo[id % animateClassesTwo.length] : animateClasses[id % animateClasses.length]
+    return <Tiles animation={animationClass} isGameOver={gameOver} key={id} name={el.name} color={el.color} isShow={el.isShow} showTile={el.showTile} onClick={() => {disabled ? null :handleClick(id)}} id={id} font={montserrat.style} />
   })
 
   const easyHs = easy ? <div className='text-[#fefce8] text-sm sm:text-lg w-24 capitalize text-center sm:mr-4 flex flex-row items-center' style={montserrat.style}>best: <div className='text-[#fde047] text-lg sm:text-2xl ml-2'>{easy}</div></div> : null
@@ -122,12 +139,17 @@ export default function Home() {
     setSelectedTile([])
   }
 
-
   function unShowTile() {
     const newArr = tiles.map(el => ({...el,showTile: false}))
     setTiles(newArr)
   }
-  
+
+  // function toggleTiles(){
+  //   const newArr = tiles.map(el => ({...el,showTile: !el.showTile}))
+  //   setTiles(newArr)
+  // }
+
+
   async function restart() {
     await sleep(250)
     const diff = level === 4 ? 16 : level === 6 ? 40 : level === 8 ? 64 : null

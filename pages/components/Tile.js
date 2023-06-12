@@ -31,7 +31,7 @@ import Strawberrysvg from '../../public/svgs/strawberry.svg'
 import Tomatosvg from '../../public/svgs/tomato.svg'
 import Winksvg from '../../public/svgs/wink.svg'
 
-export default function Tile({name,color}){
+export default function Tile({name,color,isGameOver,animation}){
     const Tilesvg = name === 'apple' ? <Applesvg className="w-6 h-6 sm:h-10 sm:w-10"/> 
         : name === 'bb' ? <Bbsvg className="w-6 h-6 sm:h-10 sm:w-10"/>
         : name === 'bear' ? <Bearsvg className="w-6 h-6 sm:h-10 sm:w-10" />
@@ -64,30 +64,19 @@ export default function Tile({name,color}){
         : name === 'strawberry' ? <Strawberrysvg className="w-6 h-6 sm:h-10 sm:w-10"/>
         : name === 'tomato' ? <Tomatosvg className="w-6 h-6 sm:h-10 sm:w-10"/>
         : name === 'wink' ? <Winksvg className="w-6 h-6 sm:h-10 sm:w-10"/> : <div></div>
+    
+    const border = color === '#ef4444' ? "border-[#ef4444]" : color === '#fbbf24' ? "border-[#fbbf24]" : color === '#3b82f6' ? "border-[#3b82f6]" : color === '#22c55e' ? "border-[#22c55e]" : "border-none bg-[#191F28]"
+
+    const blink = isGameOver ? animation : ''
 
     return (
         <>
             {
-                color === '#ef4444' ? <div className={`h-11 w-11 sm:h-[72px] sm:w-[72px] border border-[#ef4444] border-[3px] sm:border-4 rounded-md sm:rounded-xl`} id='no-select'>
+                <div className={`${blink} h-11 w-11 sm:h-[72px] sm:w-[72px] border ${border} border-[3px] sm:border-4 rounded-md sm:rounded-xl`} id='no-select'>
                     <div className="h-9 sm:h-16 border border-none rounded-md sm:rounded-xl justify-center items-center flex">
                         {Tilesvg}
                     </div>
                 </div>
-                : color === '#fbbf24' ? <div className={`h-11 w-11 sm:h-[72px] sm:w-[72px] border border-[#fbbf24] border-[3px] sm:border-4 rounded-md sm:rounded-xl`} id='no-select'>
-                    <div className="h-9 sm:h-16 border border-none rounded-md sm:rounded-xl justify-center items-center flex">
-                        {Tilesvg}
-                    </div>
-                </div>
-                : color === '#3b82f6' ? <div className={`h-11 w-11 sm:h-[72px] sm:w-[72px] border border-[#3b82f6] border-[3px] sm:border-4 rounded-md sm:rounded-xl`} id='no-select'>
-                    <div className="h-9 sm:h-16 border border-none rounded-md sm:rounded-xl justify-center items-center flex">
-                        {Tilesvg}
-                    </div>
-                </div>
-                : color === '#22c55e' ? <div className={`h-11 w-11 sm:h-[72px] sm:w-[72px] border border-[#22c55e] border-[3px] sm:border-4 rounded-md sm:rounded-xl`} id='no-select'>
-                    <div className="h-9 sm:h-16 border border-none rounded-md sm:rounded-xl justify-center items-center flex">
-                        {Tilesvg}
-                    </div>
-                </div> : <div></div>
             }
         </>
     )
